@@ -1,18 +1,14 @@
 import fetch from "node-fetch";
-import { faker } from "@faker-js/faker";
 
 const getReview = (review) => {
   const gender = review.buyerGender === "M" ? "male" : "female";
-  const displayName = faker.person.fullName({
-    sex: gender,
-  });
 
   const data = {
     anonymous: review.anonymous,
-    name: review.buyerName || displayName,
+    name: review.buyerName || "",
     displayName,
     gender,
-    country: review.buyerCountry || faker.location.countryCode("alpha-2"),
+    country: review.buyerCountry || "",
     rating: review?.buyerEval ? review.buyerEval / 20 : 5,
     info: review.skuInfo,
     date: review.evalDate,
